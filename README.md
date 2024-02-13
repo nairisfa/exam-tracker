@@ -8,6 +8,7 @@ NPM: 2306275071
 Kelas: PBP A
 
 Url proyek: http://naila-nursa-examtracker.pbp.cs.ui.ac.id/
+
 ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
 ### [ ] Membuat sebuah proyek Django baru.
