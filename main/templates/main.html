@@ -28,6 +28,10 @@
   <br />
   
   <a href="{% url 'main:create_item' %}">
-    <button>Add New Item</button>
+    <button>Add New Exam</button>
   </a>
+  <a href="{% url 'main:logout' %}">
+    <button>Logout</button>
+  </a>
+  <h5>Last login session: {{ last_login }}</h5>
 {% endblock content %}
