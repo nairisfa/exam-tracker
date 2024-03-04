@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Add New Item</h1>
+<h1 class="text-warning text-block">Add New Grades</h1>
 
 <form method="POST">
   {% csrf_token %}
@@ -8,8 +8,7 @@
     <tr>
       <td></td>
       <td>
-        <input type="submit" value="Add Item" />
-      </td>
+        <input class="btn login_btn btn-outline-warning" type="submit" value="Add New Exam" />
     </tr>
   </table>
 </form>

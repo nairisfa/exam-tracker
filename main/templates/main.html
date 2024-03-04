@@ -1,37 +1,52 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Exam Tracker Page</h1>
+<div class=" p-3">
+  
+<h1 class="text-warning text-center text-block">Exam Tracker</h1>
+    
+</div>
+  
+  
 
-<h5>Name:</h5>
+ 
+<h5 class="text-warning">Username:</h5>
 <p>{{name}}</p>
 
-<h5>Class:</h5>
+<h5 class="text-warning">Class:</h5>
 <p>{{class}}</p>
 
-<table>
-    <tr>
-      <th>Name</th>
-      <th>Grade</th>
-      <th>Description</th>
-      <th>Date Added</th>
-    </tr>
-  
-    {% for item in items %}
-    <tr>
-      <td>{{item.name}}</td>
-      <td>{{item.grade}}</td>
-      <td>{{item.description}}</td>
-      <td>{{item.date_added}}</td>
-    </tr>
+<div class="container-fluid d-flex">
+{% for item in items %}
+<div class="card m-2 bg-warning" style="max-width: 16rem;">
+  <div class="card-body">
+    <div class="text-center">
+    <div class="badge text-bg-light text-wrap" style="width: 6rem;">
+    <h5 class="card-title text-warning">{{item.name}}</h5>
+    </div>  
+    </div>
+    <p class="card-text">Score: {{item.grade}}</p>
+    <p class="card-text">Grade: {{item.description}}</p>
+    <p class="card-text">Date added: {{item.date_added}}</p>
+ 
+    <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-outline-light">Edit</a>
+    <a href="{% url 'main:delete_item' item.pk %}" class="btn btn-outline-light">Delete</a>
+  </div>
+</div>
+
     {% endfor %}
-  </table>
+  </div>
+  
   
   <br />
-  
-  <a href="{% url 'main:create_item' %}">
-    <button>Add New Exam</button>
-  </a>
-  <a href="{% url 'main:logout' %}">
-    <button>Logout</button>
-  </a>
-  <h5>Last login session: {{ last_login }}</h5>
+  <div id="wrap">
+    <div id="main" class="container clear-top">
+      <p><div class="position-relative">
+        <div class="position-absolute top-100 start-50 translate-middle">
+        <p class=text-warning-emphasis>Last login session: {{ last_login }}</p>
+      </div>
+    </div></p>
+    </div>
+  </div>
+  <footer class="footer"></footer>
+    
+
 {% endblock content %}

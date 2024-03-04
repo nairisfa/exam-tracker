@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
-
 {% block meta %}
 <title>Login</title>
 {% endblock meta %} 
 
 {% block content %}
 <div class="login">
-  <h1>Login</h1>
+  <h1 class="text-warning text-block">Login</h1>
 
   <form method="POST" action="">
     {% csrf_token %}
@@ -37,7 +36,7 @@
 
       <tr>
         <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
+        <td><input class="btn login_btn btn-outline-warning" type="submit" value="Login" /></td>
       </tr>
     </table>
   </form>
@@ -49,7 +48,6 @@
     {% endfor %}
   </ul>
   {% endif %} Don't have an account yet?
-  <a href="{% url 'main:register' %}">Register Now</a>
+  <a href="{% url 'main:register' %}" class="text-warning">Register Now</a>
 </div>
-
 {% endblock content %}
