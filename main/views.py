@@ -9,6 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from main.forms import ItemForm
 from main.models import Item
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -110,3 +111,18 @@ def delete_item(request, id):
     item = Item.objects.get(pk = id)
     item.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
+
+@csrf_exempt
+def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        grade = request.POST.get("grade")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_item = Item(name=name, grade=int(grade), description=description, user=user)
+        new_item.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
