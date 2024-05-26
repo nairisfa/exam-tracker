@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.core import serializers
 from main.forms import ItemForm
 from main.models import Item
@@ -126,3 +126,23 @@ def add_item_ajax(request):
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
+
+@csrf_exempt
+def create_exam_flutter(request):
+
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+
+        new_book = Book.objects.create(
+            user = request.user,
+            name = data["name"],
+            grade = int(data["grade"]),
+            description = data["description"]
+        )
+
+        new_book.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
